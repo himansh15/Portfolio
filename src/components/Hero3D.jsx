@@ -3,33 +3,37 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import { motion } from "framer-motion";
 
+// Utility to detect mobile viewport based on width
 function useMobile(maxWidth = 640) {
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" && window.innerWidth <= maxWidth
   );
+
   useEffect(() => {
     const handler = () => setIsMobile(window.innerWidth <= maxWidth);
     window.addEventListener("resize", handler);
     return () => window.removeEventListener("resize", handler);
   }, [maxWidth]);
+
   return isMobile;
 }
 
 function LaptopModel(props) {
   const ref = useRef();
-  const laptopPath = new URL('../assets/Laptop.glb', import.meta.url).href;
-  const { scene } = useGLTF(laptopPath);
+  const { scene } = useGLTF('/assets/Laptop.glb'); // Adjusted path
+
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y += 0.01;
+      ref.current.rotation.y += 0.01; // Simple rotation effect
     }
   });
+
   return <primitive ref={ref} object={scene} scale={[3, 3, 3]} {...props} />;
 }
 
 export default function Hero3D() {
   const isMobile = useMobile();
-  const laptopImagePath = new URL('../assets/laptop-static.png', import.meta.url).href;
+  const laptopImagePath = '/assets/laptop-static.png'; // Adjusted path
 
   return (
     <section className="flex flex-col items-center justify-center min-h-[55vh] pb-8 pt-6 sm:pb-12 sm:pt-8 w-full px-2 sm:px-6">
@@ -55,7 +59,7 @@ export default function Hero3D() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 1 }}
       >
-        I have built interactive and responsive web apps with React, TailwindCSS, Vite and also managed databases using MongoDB with hands-on experience on Projects.
+        I have built interactive and responsive web apps with React, TailwindCSS, Vite and have hands-on experience managing databases using MongoDB.
       </motion.p>
       <div className="w-full flex justify-center items-center">
         {isMobile ? (
