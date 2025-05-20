@@ -30,6 +30,8 @@ html {
 
 /* Optional: Prevent flashing of unstyled background on page load */
 body {
-  @apply bg-gray-900 text-white antialiased;
+  background-color: #1a202c; /* a close match to Tailwind's 'bg-gray-900' */
+  color: #ffffff;  /* ensure text is white */
+  min-height: 100vh; /* match 'min-h-screen' */
+  -webkit-font-smoothing: antialiased; /* to match Tailwind's 'antialiased' */
 }
-
