@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Optional: Hide scrollbars inside the chatbot window for a cleaner look.
+   Adjust '.my-chatbot-content' to match your Chatbot's chat content class if different. */
+.my-chatbot-content {
+  scrollbar-width: thin;
+  scrollbar-color: #06b6d4 #f1f5f9;
+}
+.my-chatbot-content::-webkit-scrollbar {
+  width: 5px;
+  background: #f1f5f9;
+}
+.my-chatbot-content::-webkit-scrollbar-thumb {
+  background: #06b6d4;
+  border-radius: 8px;
+}
+
+/* Optional: Chatbot typing animation for bot replies */
+@keyframes chatbot-blink {
+  0%, 100% { opacity: 1;}
+  50% { opacity: 0.25;}
+}
+.chatbot-typing {
+  animation: chatbot-blink 1.1s infinite;
+}
+
+/* Optional: Prevent flashing of unstyled background on page load */
+body {
+  @apply bg-gray-900 text-white antialiased;
+}
+
